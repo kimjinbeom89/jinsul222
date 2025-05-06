@@ -1,0 +1,126 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>차단술 계산기</title>
+    <style>
+        body { font-family: Arial; margin: 30px; }
+        label, select, input, button { margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>차단술 계산기</h1>
+    <div id="calculator"></div>
+    <button onclick="calculate()">계산하기</button>
+    <div id="result"></div>
+
+    <script>
+        const data = {
+            '차단술': [
+                {code: 'LA221', name: '경막외 신경차단술 (일회성)', price: 23630},
+                {code: 'LA240', name: '척수신경말초지차단술', price: 19320},
+                {code: 'LA250', name: '척수신경총, 신경근 및 신경절차단술', price: 17300},
+                {code: 'LA241', name: '대후두신경 차단술', price: 19320},
+                {code: 'LA242', name: '상후두신경 차단술', price: 19320},
+                {code: 'LA243', name: '후두신경 차단술', price: 19320},
+                {code: 'LA244', name: '횡경막신경 차단술', price: 19320},
+                {code: 'LA245', name: '척추부신경 차단술', price: 19320},
+                {code: 'LA247', name: '액와신경 차단술', price: 19320},
+                {code: 'LA248', name: '견갑신경 차단술', price: 19320},
+                {code: 'LA249', name: '늑간신경 차단술', price: 19320},
+                {code: 'LA251', name: '경신경총 차단술', price: 17300},
+                {code: 'LA253', name: '요천골신경총 차단술', price: 17300},
+                {code: 'LA270', name: '장골서혜신경 차단술', price: 19320},
+                {code: 'LA271', name: '장골하복신경 차단술', price: 19320},
+                {code: 'LA272', name: '좌골신경 차단술', price: 19320},
+                {code: 'LA273', name: '폐쇄신경 차단술', price: 19320},
+                {code: 'LA274', name: '대퇴신경 차단술', price: 19320},
+                {code: 'LA275', name: '외측대퇴피신경 차단술', price: 19320},
+                {code: 'LA276', name: '음부신경 차단술', price: 19320},
+                {code: 'LA346', name: '천장관절 차단술', price: 17300},
+                {code: 'LA347', name: '미골신경 차단술', price: 17300},
+                {code: 'LA352', name: '방척추신경 차단술', price: 17300},
+                {code: 'LA353', name: '미골신경 차단술', price: 17300},
+                {code: 'LA354', name: '선택적 신경근 차단술', price: 17300},
+                {code: 'LA355', name: '척추후근신경절 차단술', price: 17300},
+                {code: 'LA356', name: '척추회백신경교통지 차단술', price: 17300},
+                {code: 'LA357', name: '척추신경 후지 차단술', price: 17300},
+                {code: 'LA358', name: '후지내측지 차단술', price: 17300},
+                {code: 'LA359', name: '추간관절 차단술', price: 17300},
+                {code: 'LA360', name: '요추부 신경근 차단술', price: 17300}
+            ],
+            '기타주사료': [
+                {code: 'KK061', name: '신경간내주사', price: 12100},
+                {code: 'KK062', name: '건초내주사', price: 11200}
+            ],
+            '이학요법료': [
+                {code: 'MM010', name: '표층열치료', price: 990},
+                {code: 'MM020', name: '심층열치료', price: 2100},
+                {code: 'MM085', name: '레이저치료', price: 6540},
+                {code: 'MM101', name: '단순운동치료', price: 5400}
+            ],
+            '비급여금액': [
+                {code: 'NON001', name: '비급1만', price: 10000},
+                {code: 'NON002', name: '비급2만', price: 20000},
+                {code: 'NON003', name: '비급3만', price: 30000}
+            ],
+            '진찰료': [
+                {code: 'CONS1', name: '초진진찰료', price: 25400},
+                {code: 'CONS2', name: '재진진찰료', price: 15400}
+            ]
+        };
+
+        const doseOptions = [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0];
+        const container = document.getElementById('calculator');
+
+        const selections = [];
+
+        for (let category in data) {
+            const div = document.createElement('div');
+            div.innerHTML = `<label>${category}:</label>`;
+
+            const select = document.createElement('select');
+            select.innerHTML = '<option value="">없음</option>' +
+                data[category].map(item => `<option value="${item.code}">${item.code} - ${item.name} (${item.price}원)</option>`).join('');
+            div.appendChild(select);
+
+            const dose = document.createElement('select');
+            dose.innerHTML = doseOptions.map(d => `<option value="${d}">${d}</option>`).join('');
+            div.appendChild(dose);
+
+            selections.push({category, select, dose});
+            container.appendChild(div);
+        }
+
+        function calculate() {
+            let totalDose = 0;
+            let totalAmount = 0;
+            let nonCoveredAmount = 0;
+
+            selections.forEach(({category, select, dose}) => {
+                const code = select.value;
+                const selectedDose = parseFloat(dose.value);
+                if (code) {
+                    const item = Object.values(data).flat().find(x => x.code === code);
+                    totalDose += selectedDose;
+                    if (code.startsWith('NON')) {
+                        nonCoveredAmount += item.price;
+                    } else {
+                        totalAmount += item.price;
+                    }
+                }
+            });
+
+            const copayment = Math.round(totalAmount * 0.3) + nonCoveredAmount;
+
+            document.getElementById('result').innerHTML =
+                `<p>총 투여량: ${totalDose}</p>` +
+                `<p>총 금액 (급여): ${totalAmount.toLocaleString()}원</p>` +
+                `<p>총 금액 (비급여): ${nonCoveredAmount.toLocaleString()}원</p>` +
+                `<p>본인부담금 (급여 30% + 비급여 100%): ${copayment.toLocaleString()}원</p>`;
+        }
+    </script>
+</body>
+</html>
+```
