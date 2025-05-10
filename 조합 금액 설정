@@ -18,60 +18,52 @@
     <script>
         const data = {
             '차단술': [
-                {code: 'LA221', name: '경막외 신경차단술 (일회성)', price: 23630},
-                {code: 'LA240', name: '척수신경말초지차단술', price: 19320},
-                {code: 'LA250', name: '척수신경총, 신경근 및 신경절차단술', price: 17300},
-                {code: 'LA241', name: '대후두신경 차단술', price: 19320},
-                {code: 'LA242', name: '상후두신경 차단술', price: 19320},
-                {code: 'LA243', name: '후두신경 차단술', price: 19320},
-                {code: 'LA244', name: '횡경막신경 차단술', price: 19320},
-                {code: 'LA245', name: '척추부신경 차단술', price: 19320},
-                {code: 'LA247', name: '액와신경 차단술', price: 19320},
-                {code: 'LA248', name: '견갑신경 차단술', price: 19320},
-                {code: 'LA249', name: '늑간신경 차단술', price: 19320},
-                {code: 'LA251', name: '경신경총 차단술', price: 17300},
-                {code: 'LA253', name: '요천골신경총 차단술', price: 17300},
-                {code: 'LA270', name: '장골서혜신경 차단술', price: 19320},
-                {code: 'LA271', name: '장골하복신경 차단술', price: 19320},
-                {code: 'LA272', name: '좌골신경 차단술', price: 19320},
-                {code: 'LA273', name: '폐쇄신경 차단술', price: 19320},
-                {code: 'LA274', name: '대퇴신경 차단술', price: 19320},
-                {code: 'LA275', name: '외측대퇴피신경 차단술', price: 19320},
-                {code: 'LA276', name: '음부신경 차단술', price: 19320},
-                {code: 'LA346', name: '천장관절 차단술', price: 17300},
-                {code: 'LA347', name: '미골신경 차단술', price: 17300},
-                {code: 'LA352', name: '방척추신경 차단술', price: 17300},
-                {code: 'LA353', name: '미골신경 차단술', price: 17300},
-                {code: 'LA354', name: '선택적 신경근 차단술', price: 17300},
-                {code: 'LA355', name: '척추후근신경절 차단술', price: 17300},
-                {code: 'LA356', name: '척추회백신경교통지 차단술', price: 17300},
-                {code: 'LA357', name: '척추신경 후지 차단술', price: 17300},
-                {code: 'LA358', name: '후지내측지 차단술', price: 17300},
-                {code: 'LA359', name: '추간관절 차단술', price: 17300},
-                {code: 'LA360', name: '요추부 신경근 차단술', price: 17300}
-            ],
-            '기타주사료': [
-                {code: 'KK061', name: '신경간내주사', price: 12100},
-                {code: 'KK062', name: '건초내주사', price: 11200}
+                {code: 'LA241', name: '대소후두', price: 30530},
+                {code: 'LA247', name: '견갑신경', price: 31150},
+                {code: 'LA248', name: '늑간신경', price: 31130},
+                {code: 'LA251', name: '경신경총', price: 41480},
+                {code: 'LA253', name: '요천골신경총', price: 83500},
+                {code: 'LA272', name: '좌골신경', price: 31150},
+                {code: 'LA273', name: '폐쇄신경', price: 28000},
+                {code: 'LA274', name: '대퇴신경', price: 31180},
+                {code: 'LA275', name: '외측대퇴피신경', price: 29180},
+                {code: 'LA321', name: 'EPI(경추,흉추)', price: 84450},
+                {code: 'LA323', name: 'EPI(요추,천추)', price: 49650},
+                {code: 'LA325', name: 'STEB(경추,흉추)', price: 156980},
+                {code: 'LA326', name: 'STEB(요추,천추)', price: 156980},
+                {code: 'LA346', name: '액와신경', price: 31160},
+                {code: 'LA347', name: '액와하부신경', price: 28000},
+                {code: 'LA352', name: '방척추신경', price: 83500},
+                {code: 'LA354', name: '선택적 신경근', price: 83500},
+                {code: 'LA355', name: '척추후근신경절', price: 83500},
+                {code: 'LA357', name: '척추신경후지', price: 58260},
+                {code: 'LA358', name: '후지내측지', price: 83500},
+                {code: 'LA359', name: '추간관절', price: 87850},
+                {code: 'LA360', name: '천장관절', price: 87850},
             ],
             '이학요법료': [
-                {code: 'MM010', name: '표층열치료', price: 990},
-                {code: 'MM020', name: '심층열치료', price: 2100},
-                {code: 'MM085', name: '레이저치료', price: 6540},
-                {code: 'MM101', name: '단순운동치료', price: 5400}
+                {code: 'MM010', name: '표층열', price: 1000},
+                {code: 'MM015', name: '표층(심층동)', price: 500},
+                {code: 'MM020', name: '심층열', price: 1420},
+                {code: 'MM080', name: 'ICT', price: 4420},
+                {code: 'MM085', name: '레이저', price: 6600},
+                {code: 'MM101', name: '단순운동', price: 6330},
+                {code: 'MM190', name: '압박', price: 7250},
+                {code: 'MM200', name: '복합림프', price: 14610},
             ],
             '비급여금액': [
-                {code: 'NON001', name: '비급1만', price: 10000},
-                {code: 'NON002', name: '비급2만', price: 20000},
-                {code: 'NON003', name: '비급3만', price: 30000}
+                {code: ' ', name: '비급1만', price: 10000},
+                {code: ' ', name: '비급2만', price: 20000},
+                {code: ' ', name: '비급3만', price: 30000}
             ],
             '진찰료': [
-                {code: 'CONS1', name: '초진진찰료', price: 25400},
-                {code: 'CONS2', name: '재진진찰료', price: 15400}
+                {code: 'AA154', name: '초진진찰료', price: 18410},
+                {code: 'AA254', name: '재진진찰료', price: 13160},
+                {code: 'aa222', name: '물치재진', price: 4620},
             ]
         };
 
-        const doseOptions = [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0];
+        const doseOptions = [0.5, 1, 1.5, 2, 2.5, 3];
         const container = document.getElementById('calculator');
 
         const selections = [];
